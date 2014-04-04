@@ -3,11 +3,10 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Travis Ricks -- Student -- @BigMouthTrav
+    Jeff Siarto  -- Sensei  -- @jsiarto
 
 # THANKS
-
-    <name>
 
 # TECHNOLOGY COLOPHON
 

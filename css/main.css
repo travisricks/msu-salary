@@ -4,6 +4,12 @@
    Author's custom styles
    ========================================================================== */
 
+.a hr { 
+	background-color: #000;
+	height: 4px;
+	border: 0;
+	width: 45%;
+}
 
 
 
