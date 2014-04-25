@@ -117,6 +117,7 @@
 <script src="http://code.highcharts.com/highcharts.js"></script>
 
 <script type="text/javascript">
+(function(){
 var options = {
 chart: {
 renderTo: 'chart',
@@ -191,11 +192,13 @@ options.series[0].data.push(parseFloat(value));
 // Create the chart
 var chart = new Highcharts.Chart(options);
 });
+})();
 </script>
 <!-- Chart for id="step1-2" -->
-<!--
+
 <script type="text/javascript">
-var options = {
+(function(){
+  var options = {
 chart: {
 renderTo: 'chart1',
 defaultSeriesType: 'column'
@@ -269,7 +272,89 @@ options.series[0].data.push(parseFloat(value));
 // Create the chart
 var chart = new Highcharts.Chart(options);
 });
-</script> -->
+})();
+</script>
+
+<!-- Chart for id="step1-3" -->
+
+<script type="text/javascript">
+(function(){
+  var options = {
+chart: {
+renderTo: 'chart2',
+defaultSeriesType: 'column'
+},
+title: false,
+xAxis: {
+categories: [],
+labels: {
+rotation: -90,
+align: 'right',
+style: {
+fontSize: '11px'
+}
+}
+},
+yAxis: {
+title: {
+text: 'Avg. Salary ($)'
+}
+},
+series: [{
+data: [],
+dataLabels: {
+    enabled: true,
+    rotation: -90,
+    color: '#111',
+    align: 'right',
+    x: 4,
+    y: 10,
+    style: {
+        fontSize: '10px',
+        fontFamily: 'Verdana, sans-serif',
+        
+    }
+  }
+}]
+};
+
+$.get('preliminary-work/average-salary-dept-hc-lh.csv', function(data) {
+// Split the lines
+var lines = data.split("\r");
+
+// Iterate over the lines and add categories or series
+$.each(lines, function(lineNo, line) {
+
+var label = line.substr(0, line.lastIndexOf(',')).replace(/\"/g, '');
+var value = line.substr(line.lastIndexOf(',')+1);
+//console.log(label, value);
+
+// header line containes categories
+/* if (lineNo > 15) {
+return;
+} */
+
+if (lineNo == 0) {
+return;
+}
+
+// the rest of the lines contain data with their name in the first 
+// position
+else {
+
+options.xAxis.categories.push(label);
+options.series[0].data.push(parseFloat(value));
+
+}  
+
+
+});
+
+// Create the chart
+var chart = new Highcharts.Chart(options);
+});
+})();
+</script>
 
 <script src="js/vendor/bootstrap.min.js"></script>
 
