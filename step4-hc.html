@@ -56,19 +56,42 @@
     <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h1 class="text-center">Average Salary of the Bottom 10%</h1>
+            <h1 class="text-center">Average Salary of STEM vs. Non-STEM vs. Admin</h1>
             
 
           </div>
         </div>
 
-        <div class="row" style="width:100%; overflow:auto;">
-          <div class="pull-left">
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+<div class="row">
+      <div class="col-md-3">
+        <p>
+          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        </p>
+      </div>
+
+      <div class="col-md-8">
+        <ul class="nav nav-tabs nav-justified" id="myTab">
+        <li class="active"><a href="#step4-1" data-toggle="tab">Sorted Lowest to Highest</a></li>
+<!--         <li><a href="#step2-2" data-toggle="tab">Sorted Lowest to Highest</a></li>
+ -->        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="step4-1">
+            <div class="row" style="width:100%; overflow:auto;">
+              <div id="chart" style="width:100%; height:600px;"></div>
+            </div>
           </div>
-          
-          <div id="chart" style="width:15000px; height:600px;"></div>
+
+          <div class="tab-pane fade" id="step2-2">
+            <div class="row" style="width:100%; overflow:auto;">
+              <div id="chart1" style="width:100%; height:600px;"></div>
+            </div>
+          </div>
+
+
         </div>
+      </div>
+    </div>
 
 
       <hr>
@@ -110,84 +133,162 @@
 </script> -->
 
 <script type="text/javascript">
-  var options = {
-    chart: {
-        renderTo: 'chart',
-        defaultSeriesType: 'column'
-    },
-    title: false,
-    xAxis: {
-        categories: [],
-        labels: {
-          rotation: -90,
-          align: 'right',
-          style: {
-            fontSize: '11px'
-          }
-        }
-    },
-    yAxis: {
-        title: {
-            text: 'Avg. Salary ($)'
-        }
-    },
-    series: [{
-      data: [],
-      dataLabels: {
-                    enabled: true,
-                    rotation: -90,
-                    color: '#111',
-                    align: 'right',
-                    x: 4,
-                    y: 10,
-                    style: {
-                        fontSize: '10px',
-                        fontFamily: 'Verdana, sans-serif',
-                        
-                    }
-                  }
-    }]
-
-
-
+(function(){
+var options = {
+chart: {
+renderTo: 'chart',
+defaultSeriesType: 'column'
+},
+title: false,
+xAxis: {
+categories: [],
+labels: {
+rotation: -90,
+align: 'right',
+style: {
+fontSize: '11px'
+}
+}
+},
+yAxis: {
+title: {
+text: 'Avg. Salary ($)'
+}
+},
+series: [{
+data: [],
+dataLabels: {
+    enabled: true,
+    rotation: -90,
+    color: '#111',
+    align: 'right',
+    x: 4,
+    y: 10,
+    style: {
+        fontSize: '10px',
+        fontFamily: 'Verdana, sans-serif',
+        
+    }
+  }
+}]
 };
 
-$.get('preliminary-work/average-salary-dept-hc.csv', function(data) {
-    // Split the lines
-    var lines = data.split("\r");
+$.get('preliminary-work/average-salary-dept-hc-stem-total.csv', function(data) {
+// Split the lines
+var lines = data.split("\r");
 
-    // Iterate over the lines and add categories or series
-    $.each(lines, function(lineNo, line) {
-        
-        var label = line.substr(0, line.lastIndexOf(',')).replace(/\"/g, '');
-        var value = line.substr(line.lastIndexOf(',')+1);
-        //console.log(label, value);
+// Iterate over the lines and add categories or series
+$.each(lines, function(lineNo, line) {
 
-        // header line containes categories
-        /* if (lineNo > 15) {
-          return;
-        } */
+var label = line.substr(0, line.lastIndexOf(',')).replace(/\"/g, '');
+var value = line.substr(line.lastIndexOf(',')+1);
+//console.log(label, value);
 
-        if (lineNo == 0) {
-            return;
-        }
-        
-        // the rest of the lines contain data with their name in the first 
-        // position
-        else {
+// header line containes categories
+/* if (lineNo > 15) {
+return;
+} */
 
-            options.xAxis.categories.push(label);
-            options.series[0].data.push(parseFloat(value));
-        
-        }  
+if (lineNo == 0) {
+return;
+}
+
+// the rest of the lines contain data with their name in the first 
+// position
+else {
+
+options.xAxis.categories.push(label);
+options.series[0].data.push(parseFloat(value));
+
+}  
 
 
-    });
-    
-    // Create the chart
-    var chart = new Highcharts.Chart(options);
 });
 
+// Create the chart
+var chart = new Highcharts.Chart(options);
+});
+})();
+</script>
+<!-- Chart for id="step1-2" -->
+
+<script type="text/javascript">
+(function(){
+  var options = {
+chart: {
+renderTo: 'chart1',
+defaultSeriesType: 'column'
+},
+title: false,
+xAxis: {
+categories: [],
+labels: {
+rotation: -90,
+align: 'right',
+style: {
+fontSize: '11px'
+}
+}
+},
+yAxis: {
+title: {
+text: 'Avg. Salary ($)'
+}
+},
+series: [{
+data: [],
+dataLabels: {
+    enabled: true,
+    rotation: -90,
+    color: '#111',
+    align: 'right',
+    x: 4,
+    y: 10,
+    style: {
+        fontSize: '10px',
+        fontFamily: 'Verdana, sans-serif',
+        
+    }
+  }
+}]
+};
+
+$.get('preliminary-work/average-salary-dept-hc-btm10-lh.csv', function(data) {
+// Split the lines
+var lines = data.split("\r");
+
+// Iterate over the lines and add categories or series
+$.each(lines, function(lineNo, line) {
+
+var label = line.substr(0, line.lastIndexOf(',')).replace(/\"/g, '');
+var value = line.substr(line.lastIndexOf(',')+1);
+//console.log(label, value);
+
+// header line containes categories
+/* if (lineNo > 15) {
+return;
+} */
+
+if (lineNo == 0) {
+return;
+}
+
+// the rest of the lines contain data with their name in the first 
+// position
+else {
+
+options.xAxis.categories.push(label);
+options.series[0].data.push(parseFloat(value));
+
+}  
+
+
+});
+
+// Create the chart
+var chart = new Highcharts.Chart(options);
+});
+})();
 </script>
 
         <script src="js/vendor/bootstrap.min.js"></script>
