@@ -1,7 +1,7 @@
 <div class="container panel">
         <div class="row">
           <div class="col-md-12">
-            <h1 class="text-center">Average Salary of STEM vs. Non-STEM vs. Admin</h1>
+            <h1 class="text-left page-header">Average Salary of STEM vs. Non-STEM vs. Admin</h1>
             
 
           </div>
@@ -17,21 +17,22 @@
       </div>
 
       <div class="col-md-8">
-        <ul class="nav nav-pills nav-justified" id="myTab">
+        <ul class="nav nav-pills nav-justified" id="myTab" style="margin-bottom:10px;">
+        <li><a href="#step2-2" data-toggle="tab"></a></li>
+        <li><a href="#step2-2" data-toggle="tab"></a></li>
         <li class="active"><a href="#step4-1" data-toggle="tab">Sorted Lowest to Highest</a></li>
-<!--         <li><a href="#step2-2" data-toggle="tab">Sorted Lowest to Highest</a></li>
- -->        </ul>
+        </ul>
 
         <div class="tab-content">
           <div class="tab-pane fade in active" id="step4-1">
-            <div class="row" style="width:100%; overflow:auto;">
-              <div id="chart" style="width:100%; height:600px;"></div>
+            <div class="row" style="width:100%; overflow:auto; border: 1px #eee solid;">
+              <div id="chart" style="width:100%; height:600px; border: 1px #eee solid;"></div>
             </div>
           </div>
 
           <div class="tab-pane fade" id="step2-2">
-            <div class="row" style="width:100%; overflow:auto;">
-              <div id="chart1" style="width:100%; height:600px;"></div>
+            <div class="row" style="width:100%; overflow:auto; border: 1px #eee solid;">
+              <div id="chart1" style="width:100%; height:600px; border: 1px #eee solid;"></div>
             </div>
           </div>
 
@@ -71,6 +72,7 @@ text: 'Avg. Salary ($)'
 }
 },
 series: [{
+  name: '$',
 data: [],
 dataLabels: {
     enabled: true,
@@ -83,7 +85,10 @@ dataLabels: {
         fontSize: '10px',
         fontFamily: 'Verdana, sans-serif',
         
-    }
+    },
+     formatter: function() {
+                          return '$'+ Highcharts.numberFormat(this.y, 0);
+                      }
   }
 }]
 };
@@ -154,6 +159,7 @@ text: 'Avg. Salary ($)'
 }
 },
 series: [{
+  name: '$',
 data: [],
 dataLabels: {
     enabled: true,
@@ -166,7 +172,10 @@ dataLabels: {
         fontSize: '10px',
         fontFamily: 'Verdana, sans-serif',
         
-    }
+    },
+     formatter: function() {
+                          return '$'+ Highcharts.numberFormat(this.y, 0);
+                      }
   }
 }]
 };
