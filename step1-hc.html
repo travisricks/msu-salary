@@ -39,7 +39,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">MSU Faculty Salary Analysis</a>
+        <a class="navbar-brand" href="index.html">MSU Faculty Salary Analysis</a>
       </div>
       
       <div class="navbar-collapse collapse">
@@ -67,10 +67,12 @@
         <p>
           "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         </p>
+        <p class="text-left" style="margin-top:20px;"><a href="step2-hc.html" class="btn btn-primary" role="button">See the Top 10% &raquo;</a></p>
+
       </div>
 
       <div class="col-md-8">
-        <ul class="nav nav-tabs nav-justified" id="myTab">
+        <ul class="nav nav-pills nav-justified" id="myTab" style="margin-bottom:10px;">
         <li class="active"><a href="#step1-1" data-toggle="tab">Sorted A to Z</a></li>
         <li><a href="#step1-2" data-toggle="tab">Sorted Highest to Lowest</a></li>
         <li><a href="#step1-3" data-toggle="tab">Sorted Lowest to Highest</a></li>
@@ -78,9 +80,9 @@
  -->        </ul>
 
         <div class="tab-content">
-          <div class="tab-pane fade in active" id="step1-1">
-            <div class="row" style="width:100%; overflow:auto;">
-              <div id="chart" style="width:15000px; height:600px;"></div>
+          <div class="tab-pane fade in active" id="step1-1" >
+            <div class="row" style="width:100%; overflow:auto; border: 1px #eee solid;">
+              <div id="chart" style="width:15000px; height:600px; border: 1px #eee solid;"></div>
             </div>
           </div>
 
@@ -137,12 +139,16 @@ fontSize: '11px'
 }
 }
 },
+legend: {
+                enabled: false
+              },
 yAxis: {
 title: {
 text: 'Avg. Salary ($)'
 }
 },
 series: [{
+name: '$',
 data: [],
 dataLabels: {
     enabled: true,
@@ -155,7 +161,10 @@ dataLabels: {
         fontSize: '10px',
         fontFamily: 'Verdana, sans-serif',
         
-    }
+    },
+     formatter: function() {
+                          return '$'+ Highcharts.numberFormat(this.y, 0);
+                      }
   }
 }]
 };

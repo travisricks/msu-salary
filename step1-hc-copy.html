@@ -1,48 +1,59 @@
 <div class="container panel">
-        <div class="row">
-          <div class="col-md-12">
-            <h1 class="text-center">Average Salary of STEM vs. Non-STEM vs. Admin</h1>
-            
-
-          </div>
-        </div>
-
-<div class="row">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-left page-header">Average Salary of Departments</h1>
+      </div>
+    </div>
+    
+    <div class="row">
       <div class="col-md-3">
         <p>
           "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         </p>
-        <p class="text-left" style="margin-top:20px;"><a href="step5-hc.html" class="next btn btn-primary" role="button">Search the Faculty Database &raquo;</a></p>
+        <p class="text-left" style="margin-top:20px;"><a href="step2-hc.html" class="next btn btn-primary" role="button">See the Top 10% &raquo;</a></p>
 
       </div>
 
       <div class="col-md-8">
-        <ul class="nav nav-pills nav-justified" id="myTab">
-        <li class="active"><a href="#step4-1" data-toggle="tab">Sorted Lowest to Highest</a></li>
-<!--         <li><a href="#step2-2" data-toggle="tab">Sorted Lowest to Highest</a></li>
+        <ul class="nav nav-pills nav-justified" id="myTab" style="margin-bottom:10px;">
+        <li class="active"><a href="#step1-1" data-toggle="tab">Sorted A to Z</a></li>
+        <li><a href="#step1-2" data-toggle="tab">Sorted Highest to Lowest</a></li>
+        <li><a href="#step1-3" data-toggle="tab">Sorted Lowest to Highest</a></li>
+<!--         <li><a href="#step1-4" data-toggle="tab">Avg. Stem vs. Non-Stem</a></li>
  -->        </ul>
 
         <div class="tab-content">
-          <div class="tab-pane fade in active" id="step4-1">
-            <div class="row" style="width:100%; overflow:auto;">
-              <div id="chart" style="width:100%; height:600px;"></div>
+          <div class="tab-pane fade in active" id="step1-1" >
+            <div class="row" style="width:100%; overflow:auto; border: 1px #eee solid;">
+              <div id="chart" style="width:15000px; height:600px; border: 1px #eee solid;"></div>
             </div>
           </div>
 
-          <div class="tab-pane fade" id="step2-2">
+          <div class="tab-pane fade" id="step1-2">
             <div class="row" style="width:100%; overflow:auto;">
-              <div id="chart1" style="width:100%; height:600px;"></div>
+              <div id="chart1" style="width:15000px; height:600px;"></div>
             </div>
           </div>
 
+          <div class="tab-pane fade" id="step1-3">
+            <div class="row" style="width:100%; overflow:auto;">
+              <div id="chart2" style="width:15000px; height:600px;"></div>
+            </div>
+          </div>
 
+          <div class="tab-pane fade" id="step1-4">
+            <div class="row" style="width:100%; overflow:auto;">
+              <div id="chart3" style="width:15000px; height:600px;"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
 
-      
-    </div>
+
+
 
 <script type="text/javascript">
 (function(){
@@ -71,6 +82,7 @@ text: 'Avg. Salary ($)'
 }
 },
 series: [{
+name: '$',
 data: [],
 dataLabels: {
     enabled: true,
@@ -83,12 +95,15 @@ dataLabels: {
         fontSize: '10px',
         fontFamily: 'Verdana, sans-serif',
         
-    }
+    },
+     formatter: function() {
+                          return '$'+ Highcharts.numberFormat(this.y, 0);
+                      }
   }
 }]
 };
 
-$.get('preliminary-work/average-salary-dept-hc-stem-total.csv', function(data) {
+$.get('preliminary-work/average-salary-dept-hc.csv', function(data) {
 // Split the lines
 var lines = data.split("\r");
 
@@ -145,9 +160,6 @@ fontSize: '11px'
 }
 }
 },
-legend: {
-                enabled: false
-              },
 yAxis: {
 title: {
 text: 'Avg. Salary ($)'
@@ -171,7 +183,7 @@ dataLabels: {
 }]
 };
 
-$.get('preliminary-work/average-salary-dept-hc-btm10-lh.csv', function(data) {
+$.get('preliminary-work/average-salary-dept-hc-hl.csv', function(data) {
 // Split the lines
 var lines = data.split("\r");
 
@@ -209,16 +221,83 @@ var chart = new Highcharts.Chart(options);
 })();
 </script>
 
-        <script src="js/vendor/bootstrap.min.js"></script>
+<!-- Chart for id="step1-3" -->
 
-        <script src="js/main.js"></script>
+<script type="text/javascript">
+(function(){
+  var options = {
+chart: {
+renderTo: 'chart2',
+defaultSeriesType: 'column'
+},
+title: false,
+xAxis: {
+categories: [],
+labels: {
+rotation: -90,
+align: 'right',
+style: {
+fontSize: '11px'
+}
+}
+},
+yAxis: {
+title: {
+text: 'Avg. Salary ($)'
+}
+},
+series: [{
+data: [],
+dataLabels: {
+    enabled: true,
+    rotation: -90,
+    color: '#111',
+    align: 'right',
+    x: 4,
+    y: 10,
+    style: {
+        fontSize: '10px',
+        fontFamily: 'Verdana, sans-serif',
+        
+    }
+  }
+}]
+};
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
+$.get('preliminary-work/average-salary-dept-hc-lh.csv', function(data) {
+// Split the lines
+var lines = data.split("\r");
+
+// Iterate over the lines and add categories or series
+$.each(lines, function(lineNo, line) {
+
+var label = line.substr(0, line.lastIndexOf(',')).replace(/\"/g, '');
+var value = line.substr(line.lastIndexOf(',')+1);
+//console.log(label, value);
+
+// header line containes categories
+/* if (lineNo > 15) {
+return;
+} */
+
+if (lineNo == 0) {
+return;
+}
+
+// the rest of the lines contain data with their name in the first 
+// position
+else {
+
+options.xAxis.categories.push(label);
+options.series[0].data.push(parseFloat(value));
+
+}  
+
+
+});
+
+// Create the chart
+var chart = new Highcharts.Chart(options);
+});
+})();
+</script>

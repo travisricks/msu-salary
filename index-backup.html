@@ -38,9 +38,9 @@
           <a class="navbar-brand" href="index.html">MSU Faculty Salary Analysis</a>
         </div>
         <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right" id="panel-nav">
-          <li class="active"><a href="home.html">Home</a></li>
-          <li><a href="step1-hc-copy.html">Step 1</a></li>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="index.html">Home</a></li>
+          <li><a href="step1-hc.html">Step 1</a></li>
           <li><a href="step2-hc.html">Step 2</a></li>
           <li><a href="step3-hc.html">Step 3</a></li>
           <li><a href="step4-hc.html">Step 4</a></li>
@@ -51,61 +51,51 @@
     </div>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    
-
-    <div class="container" id="panel-container">
-
-      
+    <div class="jumbotron">
+      <div class="container a">
+        <h1 class="text-center">$450,000,000.00</h1>
+        <h3 class="text-center">5,400 employees</h3>
+        <hr>
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <p>If the the total salary pool was split evenly, this would be the average salary for each faculty member. In reality, salaries range from $XX,XXX.00 to $9XX,XXX.00.</p>
+              <p class="text-center"><a href="step1-hc.html" class="btn btn-primary btn-lg" role="button">See how it Breaks Down &raquo;</a></p>
+            </div>
+          </div>  
+      </div>
     </div>
-<hr>
-<footer>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <!-- <div class="row">
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div> -->
+
+      <hr>
+    </div>
+      <footer>
         <p>&copy; Travis Ricks 2014</p>
       </footer>
      <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
-        <script src="http://code.highcharts.com/highcharts.js"></script>
 
         <script src="js/vendor/bootstrap.min.js"></script>
 
-         <script>
-    (function($) {
-        $(function() {
-            $.get('home.html', function(data) {
-              $('#panel-container .panel').remove();
-              $('#panel-container').append(data);
-            });
-            $('#panel-nav').on('click', 'a', function(e, el) {
-                e.preventDefault();
-
-                var url = $(this).attr('href');
-                var parent = $(this).parents().first();
-                parent.siblings().removeClass('active');
-                parent.addClass('active');
-
-                $.get(url, function(data) {
-                    $('#panel-container .panel').remove();
-                    $('#panel-container').append(data);
-                });
-            });
-            $('#panel-container').on('click', 'a.next', function(e, el) {
-                e.preventDefault();
-
-                var url = $(this).attr('href');
-
-                var navlink = $('#panel-nav a[href="'+url+'"]');
-                var parent = navlink.parents().first();
-                parent.siblings().removeClass('active');
-                parent.addClass('active');
-
-                $.get(url, function(data) {
-                    $('#panel-container .panel').remove();
-                    $('#panel-container').append(data);
-                });
-            });
-        });
-    })(jQuery);
-</script>
-       <script src="js/main.js"></script>
+        <script src="js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
