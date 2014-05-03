@@ -8,6 +8,9 @@
 
 # THANKS
 
+	Icon thanks to Money by Lemon Liu from The Noun Project
+
+
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3
